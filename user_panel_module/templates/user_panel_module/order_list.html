@@ -1,0 +1,36 @@
+{% extends 'shared/_layout.html' %}
+{% load render_partial %}
+{% load poll_extras %}
+
+{% block title %}لیست سفارشات{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 pull-right">
+                {% render_partial 'user_panel_module.views.user_panel_menu_component' %}
+            </div>
+            <div class="col-md-6">
+                <table class="table table-responsive table-hover table-striped">
+                    <tr>
+                        <th class="text-right">شناسه</th>
+                        <th class="text-right">تاریخ تایید فاکتور</th>
+                        <th class="text-right">قیمت کلی خرید</th>
+                        <th class="text-right">جزئیات</th>
+                    </tr>
+                        {% for order in orders %}
+                            <tr>
+                                <td class="text-right">{{ order.id }}</td>
+                                <td class="text-right">{{ order.payment_date | show_jalali_date }}</td>
+                                <td class="text-right">{{ order.calculate_total_amount | three_digits  }}</td>
+                                <td class="text-right">
+                                    <a href="{% url 'order_detail_page' order_id=order.id %}" class="btn btn-success">جزئیات سفارش</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
