@@ -49,9 +49,3 @@ Start the server by following command
 Once the server is up and running, head over to http://127.0.0.1:8000 to launch the App.
 
 
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License.
-
